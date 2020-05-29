@@ -24,7 +24,12 @@ private slots:
 
     void on_action_Open_triggered();
 
+    void on_action_Save_triggered();
+
 private:
     Ui::MainWindow *ui;
+
+    QString currentFile = "";
+    bool isSaved = false;
 };
 #endif // MAINWINDOW_H
