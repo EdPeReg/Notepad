@@ -64,56 +64,98 @@
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <action name="action_New">
+   <property name="icon">
+    <iconset resource="Resources.qrc">
+     <normaloff>:/imgs/imgs/New.bmp</normaloff>:/imgs/imgs/New.bmp</iconset>
+   </property>
    <property name="text">
     <string>&amp;New</string>
    </property>
   </action>
   <action name="action_Open">
+   <property name="icon">
+    <iconset resource="Resources.qrc">
+     <normaloff>:/imgs/imgs/Open.bmp</normaloff>:/imgs/imgs/Open.bmp</iconset>
+   </property>
    <property name="text">
     <string>&amp;Open</string>
    </property>
   </action>
   <action name="action_Save">
+   <property name="icon">
+    <iconset resource="Resources.qrc">
+     <normaloff>:/imgs/imgs/Save.bmp</normaloff>:/imgs/imgs/Save.bmp</iconset>
+   </property>
    <property name="text">
     <string>&amp;Save</string>
    </property>
   </action>
   <action name="action_Save_As">
+   <property name="icon">
+    <iconset resource="Resources.qrc">
+     <normaloff>:/imgs/imgs/save as. png</normaloff>:/imgs/imgs/save as. png</iconset>
+   </property>
    <property name="text">
     <string>&amp;Save As</string>
    </property>
   </action>
   <action name="action_Exit">
+   <property name="icon">
+    <iconset resource="Resources.qrc">
+     <normaloff>:/imgs/imgs/exit.png</normaloff>:/imgs/imgs/exit.png</iconset>
+   </property>
    <property name="text">
     <string>&amp;Exit</string>
    </property>
   </action>
   <action name="action_Copy">
+   <property name="icon">
+    <iconset resource="Resources.qrc">
+     <normaloff>:/imgs/imgs/Copy.bmp</normaloff>:/imgs/imgs/Copy.bmp</iconset>
+   </property>
    <property name="text">
     <string>&amp;Copy</string>
    </property>
   </action>
   <action name="action_Cut">
+   <property name="icon">
+    <iconset resource="Resources.qrc">
+     <normaloff>:/imgs/imgs/Cut.bmp</normaloff>:/imgs/imgs/Cut.bmp</iconset>
+   </property>
    <property name="text">
     <string>&amp;Cut</string>
    </property>
   </action>
   <action name="action_Paste">
+   <property name="icon">
+    <iconset resource="Resources.qrc">
+     <normaloff>:/imgs/imgs/Paste.bmp</normaloff>:/imgs/imgs/Paste.bmp</iconset>
+   </property>
    <property name="text">
     <string>&amp;Paste</string>
    </property>
   </action>
   <action name="action_Undo">
+   <property name="icon">
+    <iconset resource="Resources.qrc">
+     <normaloff>:/imgs/imgs/undo.png</normaloff>:/imgs/imgs/undo.png</iconset>
+   </property>
    <property name="text">
     <string>&amp;Undo</string>
    </property>
   </action>
   <action name="action_Redo">
+   <property name="icon">
+    <iconset resource="Resources.qrc">
+     <normaloff>:/imgs/imgs/redo.png</normaloff>:/imgs/imgs/redo.png</iconset>
+   </property>
    <property name="text">
     <string>&amp;Redo</string>
    </property>
   </action>
  </widget>
- <resources/>
+ <resources>
+  <include location="Resources.qrc"/>
+ </resources>
  <connections/>
 </ui>
