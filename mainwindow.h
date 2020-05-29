@@ -26,6 +26,20 @@ private slots:
 
     void on_action_Save_triggered();
 
+    void on_action_Save_As_triggered();
+
+    void on_action_Exit_triggered();
+
+    void on_action_Copy_triggered();
+
+    void on_action_Cut_triggered();
+
+    void on_action_Paste_triggered();
+
+    void on_action_Undo_triggered();
+
+    void on_action_Redo_triggered();
+
 private:
     Ui::MainWindow *ui;
 
