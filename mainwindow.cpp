@@ -1,8 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
-#include <iostream>
-
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
@@ -10,7 +8,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
 
     this->setCentralWidget(ui->textEdit);
-    ui->textEdit->setText("WELCOME!!!");
+    ui->textEdit->setText("WELCOME!!, CREATE A NEW FILE :)");
     ui->textEdit->setAlignment(Qt::AlignCenter);
 }
 
@@ -22,6 +20,7 @@ MainWindow::~MainWindow()
 void MainWindow::on_action_New_triggered()
 {
     ui->textEdit->clear();
+    isNewFile = true;
 }
 
 /* Will open a file and set its content to our text edit. */
@@ -29,7 +28,7 @@ void MainWindow::on_action_Open_triggered()
 {
     QString filename = QFileDialog::getOpenFileName(this, "Open File", "/home");
     QFile file(filename);
-    QTextStream stream(&file);
+    QTextStream in(&file);
 
     currentFile = filename;
 
@@ -41,7 +40,7 @@ void MainWindow::on_action_Open_triggered()
     setWindowTitle(currentFile);
 
     // Read all the text from the file and set it in our text edit.
-    QString text = stream.readAll();
+    QString text = in.readAll();
     ui->textEdit->setText(text);
     file.close();
 }
@@ -49,39 +48,18 @@ void MainWindow::on_action_Open_triggered()
 /* Will save the file, overwriting the same file. */
 void MainWindow::on_action_Save_triggered()
 {
-    QFile file(currentFile);
-    QTextStream stream(&file);
-
-    isSaved = true;
-    if(!file.open(QIODevice::WriteOnly)) {
-        QMessageBox::warning(this, "Error", "Cannot write in the file: " + file.errorString());
-        return;
+    if(isNewFile) {
+        on_action_Save_As_triggered();
+    } else {
+        saveFile(currentFile);
     }
-    setWindowTitle(currentFile);
-
-    QString text = ui->textEdit->toPlainText();
-    stream << text;
-
-    file.close();
 }
 
 /* Will save the file, having the option the save it as a new file. */
 void MainWindow::on_action_Save_As_triggered()
 {
     QString filename = QFileDialog::getSaveFileName(this, "Save As", "/home");
-    QFile file(filename);
-    QTextStream out(&file);
-
-    isSaved = true;
-    if(!file.open(QIODevice::WriteOnly)) {
-        QMessageBox::warning(this, "Error", "Cannot save file");
-    }
-    setWindowTitle(filename);
-
-    QString text = ui->textEdit->toPlainText();
-    out << text;
-
-    file.close();
+    saveFile(filename);
 }
 
 void MainWindow::on_action_Exit_triggered()
@@ -93,7 +71,7 @@ void MainWindow::on_action_Exit_triggered()
     msgBox.setStandardButtons(QMessageBox::Save | QMessageBox::Cancel);
     msgBox.setDefaultButton(QMessageBox::Save);
 
-    if(!isSaved) {
+    if(!isFileSaved) {
         int option = msgBox.exec();
         switch(option) {
             case QMessageBox::Save:
@@ -132,4 +110,21 @@ void MainWindow::on_action_Undo_triggered()
 void MainWindow::on_action_Redo_triggered()
 {
     ui->textEdit->redo();
+}
+
+void MainWindow::saveFile(const QString& fileName) {
+    QFile file(fileName);
+    QTextStream out(&file);
+
+    isFileSaved = true;
+    if(!file.open(QIODevice::WriteOnly)) {
+        QMessageBox::warning(this, "Error", "Cannot write in the file: " + file.errorString());
+        return;
+    }
+    setWindowTitle(currentFile);
+
+    QString text = ui->textEdit->toPlainText();
+    out << text;
+
+    file.close();
 }

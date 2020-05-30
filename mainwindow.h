@@ -19,6 +19,8 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+    void saveFile(const QString&);
+
 private slots:
     void on_action_New_triggered();
 
@@ -44,6 +46,7 @@ private:
     Ui::MainWindow *ui;
 
     QString currentFile = "";
-    bool isSaved = false;
+    bool isFileSaved = false;
+    bool isNewFile = false;
 };
 #endif // MAINWINDOW_H
